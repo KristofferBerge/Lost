@@ -34,24 +34,30 @@ public class uiUpdate : MonoBehaviour {
 	//Public setters. 
 	public void setCurrentHealth(float delta){
 		currentHealthXValue = currentHealthXValue - (delta * healthBarUnit);
+        //Making sure health does not exceed max value
         if (currentHealthXValue > maxXValue) {
             healthTransform.localPosition = new Vector3(maxXValue, healthYValue);
         }
+        //Making sure health does not exceed min value
         else if (currentHealthXValue < minXValue) {
             healthTransform.localPosition = new Vector3(minXValue, healthYValue);
         }
+        //Sets new health value in UI
         else {
             healthTransform.localPosition = new Vector3(currentHealthXValue, healthYValue);
         }
 	}
 	public void setCurrentHunger(float delta){
 		currentHungerXValue = currentHungerXValue - (delta * hungerBarUnit);
+        //Making sure hunger does not exceed max value
         if (currentHungerXValue > maxXValue) {
             hungerTransform.localPosition = new Vector3(maxXValue, hungerYValue);
         }
+        //making sure hunger does not exceed min value
         else if (currentHungerXValue < minXValue) {
             hungerTransform.localPosition = new Vector3(minXValue, hungerYValue);
         }
+        //Sets new health value in UI
         else {
             hungerTransform.localPosition = new Vector3(currentHungerXValue, hungerYValue);
         }

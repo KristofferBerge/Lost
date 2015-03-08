@@ -82,6 +82,7 @@ public class inventoryUpdate : MonoBehaviour {
 		posX = invPos.transform.position.x;
 		posY = invPos.transform.position.y;
 
+		//Instantiates the inventory
 		updateInventory ();
 	
 	}
@@ -92,6 +93,7 @@ public class inventoryUpdate : MonoBehaviour {
 			currentSlot -= 1;
 			checkCurrentSlot ();
 		} 
+
 		else if (Input.GetAxis ("Mouse ScrollWheel") < 0) {
 			currentSlot += 1;
 			checkCurrentSlot();

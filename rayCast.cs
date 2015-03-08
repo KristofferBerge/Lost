@@ -38,12 +38,30 @@ public class rayCast : MonoBehaviour {
             }
         }
 
+        if (Input.GetButton("Submit")) {
+            if (Physics.Raycast(ray, out hit, 10)) {
+                if (hit.collider.tag == "teleportDown") {
+                    Application.LoadLevel("bunker");
+                }
+                else if (hit.collider.tag == "teleportUp") {
+                    Application.LoadLevel("main");
+                }
+            }
+        }
+
         if (Physics.Raycast(ray, out hit, 10)) {
             if (hit.collider.tag == "pickup") {
                 //If ray hits object that can be picked up
                 disp.text = "Right click to pick up";
             }
-            else {
+            else if (hit.collider.tag == "teleportUp") {
+                disp.text = "Press 'E' to climb down";
+            }
+            else if (hit.collider.tag == "teleportDown") {
+                disp.text = "Press 'E' to climb up";
+            }
+            else
+            {
                 disp.text = "";
             }
         }

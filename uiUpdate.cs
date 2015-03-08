@@ -34,15 +34,40 @@ public class uiUpdate : MonoBehaviour {
 	//Public setters. 
 	public void setCurrentHealth(float delta){
 		currentHealthXValue = currentHealthXValue - (delta * healthBarUnit);
-		healthTransform.localPosition = new Vector3(currentHealthXValue, healthYValue);
+        if (currentHealthXValue > maxXValue) {
+            healthTransform.localPosition = new Vector3(maxXValue, healthYValue);
+        }
+        else if (currentHealthXValue < minXValue) {
+            healthTransform.localPosition = new Vector3(minXValue, healthYValue);
+        }
+        else {
+            healthTransform.localPosition = new Vector3(currentHealthXValue, healthYValue);
+        }
 	}
 	public void setCurrentHunger(float delta){
 		currentHungerXValue = currentHungerXValue - (delta * hungerBarUnit);
-		hungerTransform.localPosition = new Vector3(currentHungerXValue, hungerYValue);
+        if (currentHungerXValue > maxXValue) {
+            hungerTransform.localPosition = new Vector3(maxXValue, hungerYValue);
+        }
+        else if (currentHungerXValue < minXValue) {
+            hungerTransform.localPosition = new Vector3(minXValue, hungerYValue);
+        }
+        else {
+            hungerTransform.localPosition = new Vector3(currentHungerXValue, hungerYValue);
+        }
 	}
 	public void setCurrentDrug(float delta){
 		currentDrugsXValue = currentDrugsXValue - (delta * drugsBarUnit);
-		drugsTransform.localPosition = new Vector3(currentDrugsXValue, drugsYValue);
+        if (currentDrugsXValue > maxXValue){
+            drugsTransform.localPosition = new Vector3(maxXValue, drugsYValue);
+        }
+        else if (currentDrugsXValue < minXValue) {
+            drugsTransform.localPosition = new Vector3(minXValue, drugsYValue);
+        }
+        else
+        {
+            drugsTransform.localPosition = new Vector3(currentDrugsXValue, drugsYValue);
+        }
 	}
 
 	void Start () {

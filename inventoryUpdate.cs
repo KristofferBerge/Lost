@@ -29,6 +29,7 @@ public class inventoryUpdate : MonoBehaviour {
 		//check which sprite to draw
 		for (int i = 0; i < 8; i++) {
 
+			//Selects the "selected" sprite to be instantiated
 			if(i == currentSlot){
 				switch (inventoryArr[i]){
 					case 0:
@@ -37,6 +38,7 @@ public class inventoryUpdate : MonoBehaviour {
 				}
 			}
 
+			//Selects the "unselected" sprites to be instantiated
 			else{
 				switch (inventoryArr[i]){
 				case 0:
@@ -47,7 +49,7 @@ public class inventoryUpdate : MonoBehaviour {
 		}
 	}
 
-	//instantiates sprite and sets tag
+	//Instantiates sprite, sets parent and tag
 	private void createSlot(int i, GameObject sprite){
 			GameObject slot = Instantiate (sprite, new Vector3((posX + (slotSize*i)-negOffset),posY,0),Quaternion.identity) as GameObject;
 			slot.transform.SetParent (this.transform);
@@ -62,7 +64,6 @@ public class inventoryUpdate : MonoBehaviour {
 		else if(currentSlot > 7){
 			currentSlot = 0;
 		}
-
 		updateInventory ();
 	}
 
@@ -70,13 +71,14 @@ public class inventoryUpdate : MonoBehaviour {
 	void Start () {
 		//sets negative offset for inventory 
 		negOffset = (slotSize * 3.5f);
+
 		//Creates empty inventory array
 		inventoryArr = new int[8];
 		for(int i = 0; i < 8; i++){
 			inventoryArr[i] = 0;
 		}
+		//sets current selected slot and gets position of inventory from dummy-sprite placed on canvas
 		currentSlot = 1;
-
 		posX = invPos.transform.position.x;
 		posY = invPos.transform.position.y;
 

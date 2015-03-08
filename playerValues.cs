@@ -22,7 +22,7 @@ public class playerValues : MonoBehaviour {
         }
     }
     void awake() { 
-        //update = uiScript.GetComponent<uiUpdate>();
+        
     }
 	// Use this for initialization
 	void Start () {

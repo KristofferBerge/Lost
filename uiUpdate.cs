@@ -19,6 +19,14 @@ public class uiUpdate : MonoBehaviour {
 	private float currentHungerXValue;
 	private float hungerYValue;
 
+	//Variables for drugs
+	public int maxDrugs;
+	public RectTransform drugsTransform;
+	private int currentDrugs;
+	private float drugsBarUnit;
+	private float currentDrugsXValue;
+	private float drugsYValue;
+
 	//variables for health and hunger
 	private float minXValue;
 	private float maxXValue;
@@ -32,16 +40,23 @@ public class uiUpdate : MonoBehaviour {
 		currentHungerXValue = currentHungerXValue - (delta * hungerBarUnit);
 		hungerTransform.localPosition = new Vector3(currentHungerXValue, hungerYValue);
 	}
+	public void setCurrentDrug(float delta){
+		currentDrugsXValue = currentDrugsXValue - (delta * drugsBarUnit);
+		drugsTransform.localPosition = new Vector3(currentDrugsXValue, drugsYValue);
+	}
 
 	void Start () {
 	
-		//set barUnits. (Should be called if increase/decrease in max hunger and/or health is enabled @runtime)
+		//set coordinates
 		minXValue = healthTransform.localPosition.x - healthTransform.rect.width;
 		maxXValue = healthTransform.localPosition.x;
 		healthYValue = healthTransform.localPosition.y;
 		hungerYValue = hungerTransform.localPosition.y;
+		drugsYValue = drugsTransform.localPosition.y;
+		//set barUnits. (Should be called if increase/decrease in max hunger and/or health is enabled @runtime)
 		healthBarUnit = (maxXValue - minXValue) / maxHealth;
 		hungerBarUnit = (maxXValue - minXValue) / maxHunger;
+		drugsBarUnit = (maxXValue - minXValue) / maxDrugs;
 
 	}
 

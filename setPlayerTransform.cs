@@ -8,7 +8,6 @@ public class setPlayerTransform : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         player = GameObject.Find("First Person Controller");
-        player.transform.localScale = new Vector3(1f, 1f, 1f);
         spawn = new Vector3(indicator.transform.position.x,indicator.transform.position.y,indicator.transform.position.z);
         player.transform.position = spawn;
     }

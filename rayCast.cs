@@ -52,7 +52,7 @@ public class rayCast : MonoBehaviour {
         if (Physics.Raycast(ray, out hit, 10)) {
             if (hit.collider.tag == "pickup") {
                 //If ray hits object that can be picked up
-                disp.text = "Right click to pick up";
+                disp.text = "Right click to pick up " + hit.collider.name;
             }
             else if (hit.collider.tag == "teleportUp") {
                 disp.text = "Press 'E' to climb down";

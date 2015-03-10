@@ -7,6 +7,10 @@ public class inventoryUpdate : MonoBehaviour {
 	public GameObject invPos;
 	public GameObject uEmpty;
 	public GameObject sEmpty;
+    public GameObject uBanana;
+    public GameObject sBanana;
+    public GameObject uFirstAid;
+    public GameObject sFirstAid;
 
 	//Storing positions, selection and inventory
 	public float slotSize;
@@ -35,6 +39,12 @@ public class inventoryUpdate : MonoBehaviour {
 					case 0:
 						createSlot(i, sEmpty);
 						break;
+                    case 1:
+                        createSlot(i, sBanana);
+                        break;
+                    case 2:
+                        createSlot(i, sFirstAid);
+                        break;
 				}
 			}
 
@@ -44,6 +54,12 @@ public class inventoryUpdate : MonoBehaviour {
 				case 0:
 					createSlot(i, uEmpty);
 					break;
+                case 1:
+                    createSlot(i, uBanana);
+                    break;
+                case 2:
+                        createSlot(i, uFirstAid);
+                        break;
 				}
 			}
 		}
@@ -77,6 +93,8 @@ public class inventoryUpdate : MonoBehaviour {
 		for(int i = 0; i < 8; i++){
 			inventoryArr[i] = 0;
 		}
+        inventoryArr[3] = 1;
+        inventoryArr[4] = 2;
 		//sets current selected slot and gets position of inventory from dummy-sprite placed on canvas
 		currentSlot = 1;
 		posX = invPos.transform.position.x;

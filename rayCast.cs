@@ -33,6 +33,8 @@ public class rayCast : MonoBehaviour {
                             //Get item identification number for insertion in inventory-array
                             int id = GameObject.Find("Persistant").GetComponent<inventory>().getItemNr(hit.collider.gameObject);
                             GameObject.Find("UI-script").GetComponent<inventoryUpdate>().addItem(id);
+                            //Removes item from world when picked up successfully
+                            Destroy(hit.transform.gameObject);
                         }
                     }
                     else

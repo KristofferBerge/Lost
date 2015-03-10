@@ -94,10 +94,18 @@ public class inventoryUpdate : MonoBehaviour {
             return false;
         }
     }
+    public int getSelectedItem() {
+        return inventoryArr[currentSlot];
+    }
     //Adds item identification number to inventory-array and refreshes inventory-sprites
     //rayCast calls this function after first asking inventory for item-id
     public void addItem(int i) {
         inventoryArr[currentSlot] = i;
+        updateInventory();
+    }
+    //Removes item from inventory 
+    public void removeItem (){
+        inventoryArr[currentSlot] = 0;
         updateInventory();
     }
 	// Use this for initialization

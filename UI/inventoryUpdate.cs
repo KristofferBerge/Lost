@@ -13,6 +13,7 @@ public class inventoryUpdate : MonoBehaviour {
     public GameObject sFirstAid;
 
 	//Storing positions, selection and inventory
+    public int numberOfSlots;
 	public float slotSize;
 	private float posX;
 	private float posY;
@@ -31,7 +32,7 @@ public class inventoryUpdate : MonoBehaviour {
 		}
 
 		//check which sprite to draw
-		for (int i = 0; i < 8; i++) {
+		for (int i = 0; i < numberOfSlots; i++) {
 
 			//Selects the "selected" sprite to be instantiated
 			if(i == currentSlot){
@@ -75,9 +76,9 @@ public class inventoryUpdate : MonoBehaviour {
 	//Sets selected slot to oposite end of array if selected slot is outside of range
 	private void checkCurrentSlot(){
 		if(currentSlot < 0){
-			currentSlot = 7;
+			currentSlot = numberOfSlots - 1;
 		}
-		else if(currentSlot > 7){
+		else if(currentSlot > numberOfSlots -1){
 			currentSlot = 0;
 		}
 		updateInventory ();
@@ -89,8 +90,8 @@ public class inventoryUpdate : MonoBehaviour {
 		negOffset = (slotSize * 3.5f);
 
 		//Creates empty inventory array
-		inventoryArr = new int[8];
-		for(int i = 0; i < 8; i++){
+		inventoryArr = new int[numberOfSlots];
+		for(int i = 0; i < numberOfSlots; i++){
 			inventoryArr[i] = 0;
 		}
         inventoryArr[3] = 1;

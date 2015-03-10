@@ -28,8 +28,12 @@ public class rayCast : MonoBehaviour {
             if (Physics.Raycast(ray, out hit, 10)) {
                     //If object can be picked up
                     if (hit.collider.tag == "pickup")
-                    {
-                        Debug.Log("I CAN HAZ");
+                    {   //If selected slot is empty
+                        if (GameObject.Find("UI-script").GetComponent<inventoryUpdate>().getSelectedSlot()) {
+                            //Get item identification number for insertion in inventory-array
+                            int id = GameObject.Find("Persistant").GetComponent<inventory>().getItemNr(hit.collider.gameObject);
+                            GameObject.Find("UI-script").GetComponent<inventoryUpdate>().addItem(id);
+                        }
                     }
                     else
                     {

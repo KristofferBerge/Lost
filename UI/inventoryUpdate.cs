@@ -84,6 +84,22 @@ public class inventoryUpdate : MonoBehaviour {
 		updateInventory ();
 	}
 
+    //Raycast will ask if selected slot is empty when player tries to pick up object
+    //*FEATURE* This can be expanded to check entire array of inventory for free space.
+    public bool getSelectedSlot(){
+        if (inventoryArr[currentSlot] == 0) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    //Adds item identification number to inventory-array and refreshes inventory-sprites
+    //rayCast calls this function after first asking inventory for item-id
+    public void addItem(int i) {
+        inventoryArr[currentSlot] = i;
+        updateInventory();
+    }
 	// Use this for initialization
 	void Start () {
 		//sets negative offset for inventory 
@@ -105,6 +121,10 @@ public class inventoryUpdate : MonoBehaviour {
 		updateInventory ();
 	
 	}
+
+    public int getNumberOfSlots() { 
+        return numberOfSlots;
+    }
 	
 	// Update is called once per frame
 	void Update () {

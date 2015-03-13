@@ -61,10 +61,10 @@ public class rayCast : MonoBehaviour {
                 disp.text = "Right click to pick up " + hit.collider.name;
             }
             else if (hit.collider.tag == "teleportUp") {
-                disp.text = "Press 'E' to climb down";
+                disp.text = "Press 'E' to climb up";
             }
             else if (hit.collider.tag == "teleportDown") {
-                disp.text = "Press 'E' to climb up";
+                disp.text = "Press 'E' to climb down";
             }
             else
             {

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class uiUpdate : MonoBehaviour {
 
@@ -10,6 +11,9 @@ public class uiUpdate : MonoBehaviour {
 	private float healthBarUnit;
 	private float currentHealthXValue;
 	private float healthYValue;
+    //Damage
+    public GameObject damageIcon;
+    public Text damageTxt;
 
 	//Variables for hunger
 	public int maxHunger;
@@ -36,32 +40,33 @@ public class uiUpdate : MonoBehaviour {
 		currentHealthXValue = currentHealthXValue - (delta * healthBarUnit);
         //Making sure health does not exceed max value
         if (currentHealthXValue > maxXValue) {
-            healthTransform.localPosition = new Vector3(maxXValue, healthYValue);
+            currentHealthXValue = maxXValue;
         }
         //Making sure health does not exceed min value
         else if (currentHealthXValue < minXValue) {
-            healthTransform.localPosition = new Vector3(minXValue, healthYValue);
+            currentHealthXValue = minXValue;
         }
         //Sets new health value in UI
-        else {
             healthTransform.localPosition = new Vector3(currentHealthXValue, healthYValue);
-        }
 	}
 	public void setCurrentHunger(float delta){
-		currentHungerXValue = currentHungerXValue - (delta * hungerBarUnit);
+		currentHungerXValue += (delta * hungerBarUnit);
         //Making sure hunger does not exceed max value
         if (currentHungerXValue > maxXValue) {
-            hungerTransform.localPosition = new Vector3(maxXValue, hungerYValue);
+            currentHungerXValue = maxXValue;
         }
         //making sure hunger does not exceed min value
         else if (currentHungerXValue < minXValue) {
-            hungerTransform.localPosition = new Vector3(minXValue, hungerYValue);
+            currentHungerXValue = minXValue;
         }
         //Sets new health value in UI
-        else {
-            hungerTransform.localPosition = new Vector3(currentHungerXValue, hungerYValue);
-        }
+        hungerTransform.localPosition = new Vector3(currentHungerXValue, hungerYValue);
 	}
+
+    //NEED SOME WORK
+    public float getCurrentHunger() {
+        return (currentHungerXValue - minXValue) / hungerBarUnit;
+    }
 	public void setCurrentDrug(float delta){
 		currentDrugsXValue = currentDrugsXValue - (delta * drugsBarUnit);
         if (currentDrugsXValue > maxXValue){
@@ -75,6 +80,17 @@ public class uiUpdate : MonoBehaviour {
             drugsTransform.localPosition = new Vector3(currentDrugsXValue, drugsYValue);
         }
 	}
+    public void displayDamage(int i) {
+
+        if (i > 0) {
+            damageIcon.SetActive(true);
+            damageTxt.text = i + "";
+        }
+        else {
+            damageIcon.SetActive(false);
+            damageTxt.text = "";
+        }
+    }
 
 	void Start () {
 	

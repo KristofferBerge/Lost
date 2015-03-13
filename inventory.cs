@@ -29,11 +29,13 @@ public class inventory : MonoBehaviour {
             case 0:
                 break;
             case 1:
-                Debug.Log("You ate a banana");
+                //Player eats banana. Health is increased by 30
+                GameObject.Find("UI-script").GetComponent<uiUpdate>().setCurrentHunger(30);
                 removeItem();
                 break;
             case 2:
-                Debug.Log("You used a first aid kit");
+                //Player uses first aid kit. Damage is set to 0
+                GameObject.Find("Persistant").GetComponent<playerValues>().addDamage(-5);
                 removeItem();
                 break;
         }

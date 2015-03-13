@@ -27,6 +27,7 @@ public class playerValues : MonoBehaviour {
 	void Start () {
         damage = 0;
         uiScript.GetComponent<uiUpdate>().displayDamage(damage);
+        GameObject.Find("drugsBar").SetActive(false);
 	}
 
 	// Update is called once per frame

@@ -4,6 +4,11 @@ using System.Collections;
 public class pauseGame : MonoBehaviour {
     public GameObject pauseMenu;
     
+    //Protected by dontDestroyOnLoad
+    public GameObject canvas;
+    public GameObject persistant;
+    public GameObject player;
+    
     public void hidePauseMenu() {
         pauseMenu.SetActive(false);
         Time.timeScale = 1;
@@ -17,6 +22,12 @@ public class pauseGame : MonoBehaviour {
         GameObject.Find("First Person Controller").GetComponent<MouseLook>().setPause(true);
         GameObject.Find("Main Camera").GetComponent<MouseLook>().setPause(true);
             
+    }
+    public void mainMenu() {
+        Destroy(canvas);
+        Destroy(persistant);
+        Destroy(player);
+        Application.LoadLevel("menu");
     }
 	// Use this for initialization
 	void Start () {

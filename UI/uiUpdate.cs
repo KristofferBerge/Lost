@@ -104,13 +104,22 @@ public class uiUpdate : MonoBehaviour {
 		healthBarUnit = (maxXValue - minXValue) / maxHealth;
 		hungerBarUnit = (maxXValue - minXValue) / maxHunger;
 		drugsBarUnit = (maxXValue - minXValue) / maxDrugs;
-
+        GameObject.Find("miniMapCam").GetComponent<Camera>().depth = -1;
 	}
 
 
 
 	// Update is called once per frame
 	void Update () {
+        GameObject.Find("miniMapCam").transform.eulerAngles = new Vector3(90,0,0);
+        
 
-	}
+        //DEBUG! Use this for enabling minimap
+        if (Input.GetKeyDown("m")) {
+            GameObject.Find("miniMapCam").GetComponent<Camera>().depth = 1;
+        }
+    
+    }
+    
+    
 }

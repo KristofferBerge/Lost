@@ -4,13 +4,17 @@ using System.Collections;
 public class enemyFollow : MonoBehaviour {
     private GameObject player;
     private Vector3 startPos;
-    //0.01 is impossible to escape
+    
+    //0.01f is impossible to escape
     public float mobSpeed;
     private bool isFollowing;
+    
     //When player enters trigger collider, enemy starts following player.
     void OnTriggerStay(Collider other) {
         if (other == player.GetComponent<Collider>()) {
+                //Makes mob move towards player
                 transform.position = Vector3.Lerp(transform.position, player.transform.position, mobSpeed);
+                //Makes mob look at player
                 Vector3 playerPos = player.transform.position;
                 transform.LookAt(playerPos);
         }

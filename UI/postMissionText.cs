@@ -28,7 +28,7 @@ public class postMissionText : MonoBehaviour {
 		yield return new WaitForSeconds (2);
 		//Empties textbox in canvas before setting alpha back to 1
 		missionText.text = "";
-		missionText.CrossFadeAlpha (1,1,false);
+		missionText.CrossFadeAlpha (1,0.1f,false);
 	}
 
 	

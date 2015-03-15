@@ -18,6 +18,9 @@ public class inventory : MonoBehaviour {
             case "firstAid":
                 i = 2;
                 break;
+            case "coconut":
+                i = 3;
+                break;
         }
         
         return i;
@@ -36,6 +39,11 @@ public class inventory : MonoBehaviour {
             case 2:
                 //Player uses first aid kit. Damage is set to 0
                 GameObject.Find("Persistant").GetComponent<playerValues>().addDamage(-5);
+                removeItem();
+                break;
+            case 3:
+                //Player eats coconut. Health is increased by 20
+                GameObject.Find("UI-script").GetComponent<uiUpdate>().setCurrentHunger(20);
                 removeItem();
                 break;
         }

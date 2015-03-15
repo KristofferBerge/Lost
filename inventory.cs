@@ -21,6 +21,9 @@ public class inventory : MonoBehaviour {
             case "coconut":
                 i = 3;
                 break;
+            case "map":
+                i = 4;
+                break;
         }
         
         return i;
@@ -45,6 +48,12 @@ public class inventory : MonoBehaviour {
                 //Player eats coconut. Health is increased by 20
                 GameObject.Find("UI-script").GetComponent<uiUpdate>().setCurrentHunger(20);
                 removeItem();
+                break;
+            case 4:
+                //Player uses map. Minimap unlocks
+                GameObject.Find("miniMapCam").GetComponent<Camera>().depth = 1;
+                removeItem();
+                GameObject.Find("UI-script").GetComponent<postMissionText>().printMissionText("Minimap is now unlocked!");
                 break;
         }
     }

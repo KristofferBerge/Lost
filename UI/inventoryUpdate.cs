@@ -13,6 +13,8 @@ public class inventoryUpdate : MonoBehaviour {
     public GameObject sFirstAid;
     public GameObject uCoconut;
     public GameObject sCoconut;
+    public GameObject uMap;
+    public GameObject sMap;
 
 	//Storing positions, selection and inventory
     public int numberOfSlots;
@@ -51,6 +53,9 @@ public class inventoryUpdate : MonoBehaviour {
                     case 3:
                         createSlot(i, sCoconut);
                         break;
+                    case 4:
+                        createSlot(i, sMap);
+                        break;
 				}
 			}
 
@@ -68,6 +73,9 @@ public class inventoryUpdate : MonoBehaviour {
                     break;
                 case 3:
                     createSlot(i, uCoconut);
+                    break;
+                case 4:
+                    createSlot(i, uMap);
                     break;
 				}
 			}

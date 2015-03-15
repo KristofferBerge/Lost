@@ -112,12 +112,6 @@ public class uiUpdate : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         GameObject.Find("miniMapCam").transform.eulerAngles = new Vector3(90,0,0);
-        
-
-        //DEBUG! Use this for enabling minimap
-        if (Input.GetKeyDown("m")) {
-            GameObject.Find("miniMapCam").GetComponent<Camera>().depth = 1;
-        }
     
     }
     

@@ -17,9 +17,11 @@ public class pauseGame : MonoBehaviour {
         //Unlocks FPS-controller looking function in both X and Y direction
         GameObject.Find("First Person Controller").GetComponent<MouseLook>().setPause(false);
         GameObject.Find("Main Camera").GetComponent<MouseLook>().setPause(false);
+        Cursor.visible = false;
     }
 
     public void setPause() {
+        Cursor.visible = true;
         //Adding pause menu to canvas
         pauseMenu.SetActive(true);
         //Pausing game physics

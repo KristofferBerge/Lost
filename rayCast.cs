@@ -15,6 +15,7 @@ public class rayCast : MonoBehaviour {
         y = Screen.height/2;
         //Locking mouse pointer
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
 	}
 	
 	// Update is called once per frame

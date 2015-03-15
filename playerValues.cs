@@ -5,9 +5,12 @@ public class playerValues : MonoBehaviour {
     public float hungerDeclineRate;
     public float healthDeclineRate;
     public float healthInclineRate;
+    public float drugsDeclineRate;
     private int damage;
     private float health;
     private float drugs;
+    private bool drugEnabled;
+
 
     public GameObject uiScript;
     private uiUpdate update;
@@ -23,11 +26,15 @@ public class playerValues : MonoBehaviour {
         uiScript.GetComponent<uiUpdate>().displayDamage(damage);
     }
 
+    public void enableDrugDecline() {
+        drugEnabled = true;
+    }
+
 	// Use this for initialization
 	void Start () {
         damage = 0;
         uiScript.GetComponent<uiUpdate>().displayDamage(damage);
-        GameObject.Find("drugsBar").SetActive(false);
+        drugEnabled = false;
 	}
 
 	// Update is called once per frame
@@ -40,6 +47,11 @@ public class playerValues : MonoBehaviour {
 
         //Slowly decreases the hunger
         uiScript.GetComponent<uiUpdate>().setCurrentHunger(hungerDeclineRate * Time.deltaTime);
+
+        //Slowly decreases the drug-bar
+        if (drugEnabled) {
+            uiScript.GetComponent<uiUpdate>().setCurrentDrug(drugsDeclineRate * Time.deltaTime);
+        }
 
         //Slowly decreases the health if damage > 0
         if (damage > 0) {

@@ -24,6 +24,9 @@ public class inventory : MonoBehaviour {
             case "map":
                 i = 4;
                 break;
+            case "pack of drugs":
+                i = 5;
+                break;
         }
         
         return i;
@@ -54,6 +57,10 @@ public class inventory : MonoBehaviour {
                 GameObject.Find("miniMapCam").GetComponent<Camera>().depth = 1;
                 removeItem();
                 GameObject.Find("UI-script").GetComponent<postMissionText>().printMissionText("Minimap is now unlocked!");
+                break;
+            case 5:
+                GameObject.Find("Persistant").GetComponent<drugMission>().takeDrugs();
+                removeItem();
                 break;
         }
     }

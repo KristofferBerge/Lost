@@ -63,22 +63,23 @@ public class uiUpdate : MonoBehaviour {
         hungerTransform.localPosition = new Vector3(currentHungerXValue, hungerYValue);
 	}
 
-    //NEED SOME WORK
     public float getCurrentHunger() {
         return (currentHungerXValue - minXValue) / hungerBarUnit;
     }
+
 	public void setCurrentDrug(float delta){
-		currentDrugsXValue = currentDrugsXValue - (delta * drugsBarUnit);
-        if (currentDrugsXValue > maxXValue){
-            drugsTransform.localPosition = new Vector3(maxXValue, drugsYValue);
+        currentDrugsXValue += (delta * drugsBarUnit);
+
+        if (currentDrugsXValue > maxXValue) {
+            float overflow;
+            overflow = (currentDrugsXValue - minXValue / drugsBarUnit) - maxDrugs;
+            currentDrugsXValue = maxXValue;
+            GameObject.Find("Persistant").GetComponent<drugMission>().overflow(overflow);
         }
         else if (currentDrugsXValue < minXValue) {
-            drugsTransform.localPosition = new Vector3(minXValue, drugsYValue);
+            currentDrugsXValue = minXValue;
         }
-        else
-        {
-            drugsTransform.localPosition = new Vector3(currentDrugsXValue, drugsYValue);
-        }
+        drugsTransform.localPosition = new Vector3(currentDrugsXValue, drugsYValue);
 	}
     public void displayDamage(int i) {
 

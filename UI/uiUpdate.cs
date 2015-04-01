@@ -11,6 +11,7 @@ public class uiUpdate : MonoBehaviour {
 	private float healthBarUnit;
 	private float currentHealthXValue;
 	private float healthYValue;
+
     //Damage
     public GameObject damageIcon;
     public Text damageTxt;
@@ -34,6 +35,10 @@ public class uiUpdate : MonoBehaviour {
 	//variables for health and hunger
 	private float minXValue;
 	private float maxXValue;
+
+    //Storing reference to uiClock
+    private GameObject uiClock;
+    private GameObject whiteOut;
 
 	//Public setters. 
 	public void setCurrentHealth(float delta){
@@ -93,6 +98,10 @@ public class uiUpdate : MonoBehaviour {
         }
     }
 
+    public void setClockVisible() {
+        uiClock.SetActive(true);
+    }
+
 	void Start () {
 	
 		//set coordinates
@@ -106,6 +115,10 @@ public class uiUpdate : MonoBehaviour {
 		hungerBarUnit = (maxXValue - minXValue) / maxHunger;
 		drugsBarUnit = (maxXValue - minXValue) / maxDrugs;
         GameObject.Find("miniMapCam").GetComponent<Camera>().depth = -1;
+        uiClock = GameObject.Find("clockBg");
+        uiClock.SetActive(false);
+        whiteOut = GameObject.Find("WhiteOut");
+        whiteOut.GetComponent<Image>().CrossFadeAlpha(0, 0.1f, true);
 	}
 
 

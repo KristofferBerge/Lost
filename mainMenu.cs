@@ -4,6 +4,6 @@ using System.Collections;
 public class mainMenu : MonoBehaviour {
 
     public void startGame() {
-        Application.LoadLevel("main");
+        Application.LoadLevel("fpcLoader");
     }
 }

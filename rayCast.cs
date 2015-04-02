@@ -5,10 +5,14 @@ using UnityEngine.UI;
 public class rayCast : MonoBehaviour {
     float x;
     float y;
-    public Text disp;
+    private Text disp;
+    private PlayerInitPos playerpos;
 
 	// Use this for initialization
 	void Start () {
+        playerpos = GameObject.Find("Persistant").GetComponent<PlayerInitPos>();
+
+        disp = GameObject.Find("interactText").GetComponent<Text>();
 
         //Finding and setting center point on screen to match crosshair
         x = Screen.width/2;
@@ -48,9 +52,11 @@ public class rayCast : MonoBehaviour {
         if (Input.GetButton("Submit")) {
             if (Physics.Raycast(ray, out hit, 10)) {
                 if (hit.collider.tag == "teleportDown") {
+                    playerpos.setSpawn("bunker");
                     Application.LoadLevel("bunker");
                 }
                 else if (hit.collider.tag == "teleportUp") {
+                    playerpos.setSpawn("hatch");
                     Application.LoadLevel("main");
                 }
             }

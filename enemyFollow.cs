@@ -4,6 +4,7 @@ using System.Collections;
 public class enemyFollow : MonoBehaviour {
     private GameObject player;
     private Vector3 startPos;
+    private EnemyShoot shootingScript;
     
     //0.01f is impossible to escape
     public float mobSpeed;
@@ -11,6 +12,13 @@ public class enemyFollow : MonoBehaviour {
     
     //When player enters trigger collider, enemy starts following player.
     void OnTriggerStay(Collider other) {
+        
+        //Fixes bug where enemy followScript and fireAtWill stops even if the player is present in the trigger zone
+        if (other.tag == "Player" && !isFollowing) {
+            isFollowing = true;
+            StartCoroutine(fireAtWill());
+        }
+
         if (other == player.GetComponent<Collider>()) {
                 //Makes mob move towards player
                 transform.position = Vector3.Lerp(transform.position, player.transform.position, mobSpeed);
@@ -22,10 +30,15 @@ public class enemyFollow : MonoBehaviour {
     //Setting bool false when not following.
     void OnTriggerExit() {
         isFollowing = false;
+        StopAllCoroutines();
     }
     //setting bool true when following.
-    void OnTriggerEnter() {
-        isFollowing = true;
+    void OnTriggerEnter(Collider other) {
+        if (other.tag == "Player"){
+            isFollowing = true;
+            StopAllCoroutines();
+            StartCoroutine(fireAtWill());
+        }
     }
 
 	// Use this for initialization
@@ -33,6 +46,7 @@ public class enemyFollow : MonoBehaviour {
         player = GameObject.Find("First Person Controller");
         startPos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
         isFollowing = false;
+        shootingScript = GetComponent<EnemyShoot>();
 	}
 	
 	// Update is called once per frame
@@ -44,4 +58,12 @@ public class enemyFollow : MonoBehaviour {
             transform.LookAt(startPos);
         }
 	}
+
+    private IEnumerator fireAtWill()
+    {
+        while(isFollowing){
+            shootingScript.shoot();
+        yield return new WaitForSeconds(1);
+        }
+    }
 }

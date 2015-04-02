@@ -12,7 +12,7 @@ public class playerValues : MonoBehaviour {
     private bool drugEnabled;
 
 
-    public GameObject uiScript;
+    private GameObject uiScript;
     private uiUpdate update;
 
     public void addDamage(int i) {
@@ -28,6 +28,10 @@ public class playerValues : MonoBehaviour {
 
     public void enableDrugDecline() {
         drugEnabled = true;
+    }
+
+    void Awake() {
+        uiScript = GameObject.Find("UI-script");
     }
 
 	// Use this for initialization

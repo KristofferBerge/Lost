@@ -50,6 +50,7 @@ public class uiUpdate : MonoBehaviour {
         //Making sure health does not exceed min value
         else if (currentHealthXValue < minXValue) {
             currentHealthXValue = minXValue;
+            playerDead();
         }
         //Sets new health value in UI
             healthTransform.localPosition = new Vector3(currentHealthXValue, healthYValue);
@@ -125,8 +126,15 @@ public class uiUpdate : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+        //Not the best way to lock rotation on the minimap.
         GameObject.Find("miniMapCam").transform.eulerAngles = new Vector3(90,0,0);
     
+    }
+
+    void playerDead() {
+        //Sets player to dead to show kill screen
+        pauseGame pauseScript = GameObject.Find("Canvas").GetComponent<pauseGame>();
+        pauseScript.setDead(true);
     }
     
     

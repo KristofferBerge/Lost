@@ -49,7 +49,10 @@ public class CountDown : MonoBehaviour {
 
     private IEnumerator startWhiteOut() {
         yield return new WaitForSeconds(2);
-        whiteOut.GetComponent<Image>().CrossFadeAlpha(1, 10, false);
+        whiteOut.GetComponent<Image>().CrossFadeAlpha(1, 5, false);
+        yield return new WaitForSeconds(5);
+        pauseGame pauseScript = GameObject.Find("Canvas").GetComponent<pauseGame>();
+        pauseScript.setKillScreen();
     }
 
     private IEnumerator cameraShake() {

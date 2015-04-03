@@ -3,3 +3,6 @@ Survival game based on the tv-series. I'm making this for the course "introducti
 
 Alpha version:
 http://frigg.hiof.no/spillprg_v1512/lostAlpha.html
+
+TG-Alpha version:
+http://kristofferberge.no/spillprog/tgAlpha/tgAlpha.html

@@ -23,7 +23,7 @@ public class CountDown : MonoBehaviour {
 	void Start () {
         uiScript = GameObject.Find("UI-script");
         uiScript.GetComponent<uiUpdate>().setClockVisible();
-        counter = 10;
+        counter = 180;
         uiClock = GameObject.Find("clockText");
         uiScript.GetComponent<postMissionText>().printMissionText(missionText);
         endingRunning = false;
@@ -33,7 +33,7 @@ public class CountDown : MonoBehaviour {
 	}
 
 	void Update () {
-        counter -= Time.deltaTime * 1;
+        counter -= Time.deltaTime;
         if (counter < 1) {
             counter = 0;
             if (!endingRunning){
@@ -58,12 +58,14 @@ public class CountDown : MonoBehaviour {
     }
 
     private IEnumerator cameraShake() {
-        Debug.Log("function started");
         Vector3 orginalPos = camTransform.transform.localPosition;
         while (endingRunning) {
             camTransform.localPosition = orginalPos + Random.insideUnitSphere * shakeIntensity;
             yield return new WaitForSeconds(0.1f);
         }
         camTransform.localPosition = orginalPos;
+    }
+    public void resetCounter() {
+        counter = 181;
     }
 }

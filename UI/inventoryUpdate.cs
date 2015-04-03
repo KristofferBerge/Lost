@@ -162,7 +162,7 @@ public class inventoryUpdate : MonoBehaviour {
 		//Creates empty inventory array
 		inventoryArr = new int[numberOfSlots];
 		for(int i = 0; i < numberOfSlots; i++){
-			inventoryArr[i] = 0;
+            inventoryArr[i] = 0;
 		}
         inventoryArr[3] = 1;
         inventoryArr[4] = 2;

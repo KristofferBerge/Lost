@@ -127,6 +127,28 @@ public class inventoryUpdate : MonoBehaviour {
         inventoryArr[currentSlot] = i;
         updateInventory();
     }
+    //Enhancement added instead of rewriting entire inventory script
+    //Adds item to free slot when current slot is full
+    public bool addItemToSpecificSlot(int itemId) {
+        int freeSlot = findFreeSlot();
+        if (freeSlot >= 0){
+            inventoryArr[freeSlot] = itemId;
+            updateInventory();
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    //Checks array to find free slot
+    private int findFreeSlot() {
+        for (int i = 0; i < numberOfSlots; i++) {
+            if (inventoryArr[i] == 0) {
+                return i;
+            }
+        }
+        return -1;
+    }
     //Removes item from inventory 
     public void removeItem (){
         inventoryArr[currentSlot] = 0;

@@ -29,17 +29,25 @@ public class rayCast : MonoBehaviour {
        RaycastHit hit;
 
         //Player tries to interact with object
-        if (Input.GetButton("Fire1")){
+        if (Input.GetButtonUp("Fire1")){
             if (Physics.Raycast(ray, out hit, 10)) {
                     //If object can be picked up
                     if (hit.collider.tag == "pickup")
                     {   //If selected slot is empty
-                        if (GameObject.Find("UI-script").GetComponent<inventoryUpdate>().getSelectedSlot()) {
+                        if (GameObject.Find("UI-script").GetComponent<inventoryUpdate>().getSelectedSlot())
+                        {
                             //Get item identification number for insertion in inventory-array
                             int id = GameObject.Find("Persistant").GetComponent<inventory>().getItemNr(hit.collider.gameObject);
                             GameObject.Find("UI-script").GetComponent<inventoryUpdate>().addItem(id);
                             //Removes item from world when picked up successfully
                             Destroy(hit.transform.gameObject);
+                        }
+                            //Checks inventory for free space
+                        else {
+                            int id = GameObject.Find("Persistant").GetComponent<inventory>().getItemNr(hit.collider.gameObject);
+                            if (GameObject.Find("UI-script").GetComponent<inventoryUpdate>().addItemToSpecificSlot(id)){
+                                Destroy(hit.transform.gameObject);
+                            }
                         }
                     }
                     else

@@ -54,6 +54,7 @@ public class pauseGame : MonoBehaviour {
 
     public void setDead(bool boolean) {
         isDead = boolean;
+        setPause();
     }
     
     //Exiting the game

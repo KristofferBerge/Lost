@@ -22,7 +22,6 @@ public class RandomDrop : MonoBehaviour {
 
     private void dropItem()
     {
-        Debug.Log("Dropped Item");
         Rigidbody newItem = (Rigidbody)Instantiate(itemPrefab, transform.position, transform.rotation);
         newItem.name = prefabName;
     }

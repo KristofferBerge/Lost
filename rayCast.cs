@@ -51,6 +51,12 @@ public class rayCast : MonoBehaviour {
                         }
                     }
             }
+            if (Physics.Raycast(ray, out hit, 3)){
+                if (hit.collider.tag == "enemy") {
+                    hit.collider.gameObject.GetComponent<EnemyHealth>().reduceHealth(10);
+                }
+
+            }
         }
 
         if (Input.GetButton("Submit")) {

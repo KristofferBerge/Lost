@@ -133,7 +133,7 @@ public class uiUpdate : MonoBehaviour {
 
     void playerDead() {
         //Sets player to dead to show kill screen
-        pauseGame pauseScript = GameObject.Find("Canvas").GetComponent<pauseGame>();
+        pauseGame pauseScript = GameObject.Find("UI-script").GetComponent<pauseGame>();
         pauseScript.setDead(true);
     }
     

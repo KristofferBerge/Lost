@@ -50,10 +50,6 @@ public class rayCast : MonoBehaviour {
                             }
                         }
                     }
-                    else
-                    {
-                        Debug.Log("Dis is nothin");
-                    }
             }
         }
 

@@ -51,15 +51,16 @@ public class CountDown : MonoBehaviour {
         yield return new WaitForSeconds(2);
         whiteOut.GetComponent<Image>().CrossFadeAlpha(1, 5, false);
         yield return new WaitForSeconds(5);
-        pauseGame pauseScript = GameObject.Find("Canvas").GetComponent<pauseGame>();
-        pauseScript.setKillScreen();
+        pauseGame pauseScript = GameObject.Find("UI-script").GetComponent<pauseGame>();
+        StopAllCoroutines();
+        pauseScript.setDead(true);
+        pauseScript.setPause();
     }
 
     private IEnumerator cameraShake() {
         Debug.Log("function started");
         Vector3 orginalPos = camTransform.transform.localPosition;
         while (endingRunning) {
-            Debug.Log("While running");
             camTransform.localPosition = orginalPos + Random.insideUnitSphere * shakeIntensity;
             yield return new WaitForSeconds(0.1f);
         }

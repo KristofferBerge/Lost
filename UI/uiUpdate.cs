@@ -136,6 +136,7 @@ public class uiUpdate : MonoBehaviour {
         pauseGame pauseScript = GameObject.Find("UI-script").GetComponent<pauseGame>();
         pauseScript.setDead(true);
     }
+
     
     
 }

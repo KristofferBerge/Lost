@@ -1,50 +1,62 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEditor;
 
 public class CountDown : MonoBehaviour {
 
     private float counter;
-    public GameObject timerCanvas;
     private GameObject uiClock;
     private GameObject uiScript;
     private string missionText = "Coundown mission enabled!";
     private GameObject whiteOut;
+    private bool missionRunning;
     private bool endingRunning;
     private Transform camTransform;
     public float shakeIntensity;
+    private GameObject timerCanvas;
 
     void Awake() {
         whiteOut = GameObject.Find("WhiteOut");
+        uiScript = GameObject.Find("UI-script");
     }
 
+    void OnLevelWasLoaded() {
+        if (Application.loadedLevelName == "bunker") {
+            timerCanvas = GameObject.Find("Timer-Canvas");
+            if (!missionRunning){
+                uiScript.GetComponent<uiUpdate>().setClockVisible();
+                counter = 180;
+                uiScript.GetComponent<postMissionText>().printMissionText(missionText);
+                missionRunning = true;
+                uiClock = GameObject.Find("clockText");
+            }
+        }
+    }
 
 	// Use this for initialization
 	void Start () {
-        uiScript = GameObject.Find("UI-script");
-        uiScript.GetComponent<uiUpdate>().setClockVisible();
-        counter = 180;
-        uiClock = GameObject.Find("clockText");
-        uiScript.GetComponent<postMissionText>().printMissionText(missionText);
+        missionRunning = false;
         endingRunning = false;
         camTransform = GameObject.Find("Main Camera").GetComponent<Transform>();
-
-
 	}
 
 	void Update () {
-        counter -= Time.deltaTime;
-        if (counter < 1) {
-            counter = 0;
-            if (!endingRunning){
-                StartCoroutine(startWhiteOut());
-                endingRunning = true;
-                StartCoroutine(cameraShake());
+        if (missionRunning){
+            counter -= Time.deltaTime;
+            if (counter < 1){
+                counter = 0;
+                if (!endingRunning){
+                    StartCoroutine(startWhiteOut());
+                    endingRunning = true;
+                    StartCoroutine(cameraShake());
+                }
             }
+            if (Application.loadedLevelName == "bunker"){
+                timerCanvas.GetComponentInChildren<Text>().text = (int)counter + "";
+            }
+            uiClock.GetComponent<Text>().text = (int)counter + "";
         }
-        timerCanvas.GetComponentInChildren<Text>().text = (int)counter + "";
-        uiClock.GetComponent<Text>().text = (int)counter + "";
-        
 	}
 
     private IEnumerator startWhiteOut() {

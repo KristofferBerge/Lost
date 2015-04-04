@@ -17,6 +17,7 @@ public class enemyFollow : MonoBehaviour {
         if (other.tag == "Player" && !isFollowing) {
             isFollowing = true;
             StartCoroutine(fireAtWill());
+            GetComponentInChildren<Animation>().Play();
         }
 
         if (other == player.GetComponent<Collider>()) {
@@ -38,6 +39,7 @@ public class enemyFollow : MonoBehaviour {
             isFollowing = true;
             StopAllCoroutines();
             StartCoroutine(fireAtWill());
+            GetComponentInChildren<Animation>().Play();
         }
     }
 
@@ -56,6 +58,9 @@ public class enemyFollow : MonoBehaviour {
         if (!isFollowing){
             transform.position = Vector3.Lerp(transform.position, startPos, mobSpeed/2);
             transform.LookAt(startPos);
+            if (Vector3.Distance(transform.position, startPos) < 3){
+                GetComponentInChildren<Animation>().Stop();
+            } 
         }
 	}
 

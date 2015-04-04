@@ -30,13 +30,4 @@ public class postMissionText : MonoBehaviour {
 		missionText.text = "";
 		missionText.CrossFadeAlpha (1,0.1f,false);
 	}
-
-	
-	void Start () {
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 }

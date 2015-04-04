@@ -158,7 +158,7 @@ public class ComputerInteraction : MonoBehaviour {
     private void checkNumbers()
     {
         if (theNumbers == "4 8 15 16 23 42"){
-            counter = GameObject.Find("CountDownMission").GetComponent<CountDown>();
+            counter = GameObject.Find("Persistant").GetComponent<CountDown>();
             counter.resetCounter();
             theNumbers = "";
             displayNumbers();

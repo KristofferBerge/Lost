@@ -2,11 +2,14 @@
 using System.Collections;
 
 public class inventory : MonoBehaviour {
-    
+
+    private Camera mapCam;
     //Instead of adding this line over and over again in switch case below.
     private void removeItem() {
         GameObject.Find("UI-script").GetComponent<inventoryUpdate>().removeItem();
     }
+
+
     public int getItemNr(GameObject item){
         string name = item.name;
         int i = 0;
@@ -54,7 +57,7 @@ public class inventory : MonoBehaviour {
                 break;
             case 4:
                 //Player uses map. Minimap unlocks
-                GameObject.Find("miniMapCam").GetComponent<Camera>().depth = 1;
+                mapCam.depth = 1;
                 removeItem();
                 GameObject.Find("UI-script").GetComponent<postMissionText>().printMissionText("Minimap is now unlocked!");
                 break;
@@ -67,6 +70,9 @@ public class inventory : MonoBehaviour {
     
 	// Use this for initialization
 	void Start () {
+        mapCam = GameObject.Find("miniMapCam").GetComponent<Camera>();
+        //sets enemy arrows to invisible
+        mapCam.cullingMask = ~(1 << 8);
 	}
 	
 	// Update is called once per frame

@@ -5,9 +5,11 @@ public class enemyFollow : MonoBehaviour {
     private GameObject player;
     private Vector3 startPos;
     private EnemyShoot shootingScript;
+    private NavMeshAgent agent;
+    private Vector3 dest;
     
     //0.01f is impossible to escape
-    public float mobSpeed;
+    //public float mobSpeed;
     private bool isFollowing;
     
     //When player enters trigger collider, enemy starts following player.
@@ -21,11 +23,9 @@ public class enemyFollow : MonoBehaviour {
         }
 
         if (other == player.GetComponent<Collider>()) {
-                //Makes mob move towards player
-                transform.position = Vector3.Lerp(transform.position, player.transform.position, mobSpeed);
-                //Makes mob look at player
-                Vector3 playerPos = player.transform.position;
-                transform.LookAt(playerPos);
+            //Makes mob move towards player
+            dest = player.transform.position;
+            agent.destination = dest;
         }
     }
     //Setting bool false when not following.
@@ -47,6 +47,7 @@ public class enemyFollow : MonoBehaviour {
 	void Start () {
         player = GameObject.Find("First Person Controller");
         startPos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+        agent = GetComponent<NavMeshAgent>();
         isFollowing = false;
         shootingScript = GetComponent<EnemyShoot>();
 	}
@@ -56,8 +57,7 @@ public class enemyFollow : MonoBehaviour {
 
         //When enemy is not following it goes back to starting position.
         if (!isFollowing){
-            transform.position = Vector3.Lerp(transform.position, startPos, mobSpeed/2);
-            transform.LookAt(startPos);
+            agent.destination = startPos;
             if (Vector3.Distance(transform.position, startPos) < 3){
                 GetComponentInChildren<Animation>().Stop();
             } 

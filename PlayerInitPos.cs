@@ -17,6 +17,8 @@ public class PlayerInitPos : MonoBehaviour {
         spawnScale.Add("hatch", new Vector3(2,2,2));
         spawnPositions.Add("bunker", new Vector3(20, -15, -2));
         spawnScale.Add("bunker", new Vector3(1,1,1));
+        spawnPositions.Add("boat", new Vector3(817, 25, 585));
+        spawnScale.Add("boat", new Vector3(2, 2, 2));
         player = GameObject.Find("First Person Controller").transform;
     }
 

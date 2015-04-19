@@ -5,7 +5,7 @@ public class loadActualGame : MonoBehaviour {
 
 	void Start () {
         PlayerInitPos playerPosition = GameObject.Find("Persistant").GetComponent<PlayerInitPos>();
-        playerPosition.setSpawn("beach");
+        playerPosition.setSpawn("hatch");
         Application.LoadLevel("main");
 	}
 	

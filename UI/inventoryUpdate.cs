@@ -44,6 +44,7 @@ public class inventoryUpdate : MonoBehaviour {
 
 			//Selects the "selected" sprite to be instantiated
 			if(i == currentSlot){
+                //Make sure gun is only visible when gun is selected
                 showGun(false);
 				switch (inventoryArr[i]){
 					case 0:
@@ -66,6 +67,7 @@ public class inventoryUpdate : MonoBehaviour {
                         break;
                     case 6:
                         createSlot(i, sAk);
+                        //If gun is selected, set gun to visible
                         showGun(true);
                         break;
 				}
@@ -189,7 +191,7 @@ public class inventoryUpdate : MonoBehaviour {
         return numberOfSlots;
     }
 	
-	// Update is called once per frame
+	// Get input from scrollwheel or numberkeys and update inventory
 	void Update () {
 		if (Input.GetAxis ("Mouse ScrollWheel") > 0) {
 			currentSlot -= 1;
@@ -245,6 +247,8 @@ public class inventoryUpdate : MonoBehaviour {
             checkCurrentSlot();
         }
 	}
+
+    //Sets gun visible or hides gun
     private void showGun(bool show) {
         if (show) {
             GameObject.Find("First Person Controller").GetComponent<WheaponController>().showWheapon(true);

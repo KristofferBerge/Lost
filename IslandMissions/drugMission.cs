@@ -6,16 +6,19 @@ public class drugMission : MonoBehaviour {
     private GameObject drugsBar;
 
     public void takeDrugs(){
+        //Activating mission
         if (!missionEnabled){
             drugsBar.SetActive(true);
             GameObject.Find("UI-script").GetComponent<postMissionText>().printMissionText("Great, you are now hooked on drugs. Make sure you feed your newly acquired habit...");
             GameObject.Find("Persistant").GetComponent<playerValues>().enableDrugDecline();
             missionEnabled = true;
         }
+        //Updating values
         else {
             GameObject.Find("UI-script").GetComponent<uiUpdate>().setCurrentDrug(30);
         }
     }
+    //If player is taking too much: Displays text-warning and deals 50 damage;
     public void overflow(float i) {
         if (i > 10) {
             GameObject.Find("UI-script").GetComponent<postMissionText>().printMissionText("Dude, be carefull! This is some strong shit...");

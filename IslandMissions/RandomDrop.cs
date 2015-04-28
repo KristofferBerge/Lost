@@ -13,6 +13,7 @@ public class RandomDrop : MonoBehaviour {
     }
 
     private IEnumerator setTimeout() {
+        //Eternal loop drops fruit from tree with random intervals between max and min set as public int
         while (true){
             timeout = Random.Range(minInterval, maxInterval);
             yield return new WaitForSeconds(timeout);
@@ -20,8 +21,8 @@ public class RandomDrop : MonoBehaviour {
         }
     }
 
-    private void dropItem()
-    {
+    private void dropItem(){
+        //Instantiates prefab set as public rigidbody(fruit)
         Rigidbody newItem = (Rigidbody)Instantiate(itemPrefab, transform.position, transform.rotation);
         newItem.name = prefabName;
     }

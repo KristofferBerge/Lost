@@ -15,6 +15,7 @@ public class BlinkingLight : MonoBehaviour {
     }
 
     private IEnumerator lightDimmer() {
+        //Eternal loop turns light on and off
         while (true){
             redLight.intensity = intensity;
             yield return new WaitForSeconds(interval);

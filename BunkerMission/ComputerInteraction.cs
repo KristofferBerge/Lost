@@ -15,6 +15,7 @@ public class ComputerInteraction : MonoBehaviour {
     private Text computerDisplay;
     private string theNumbers;
     private CountDown counter;
+
     void Awake() {
         toolTip = GameObject.Find("toolTipText").GetComponent<Text>();
         player = GameObject.Find("First Person Controller");
@@ -32,10 +33,11 @@ public class ComputerInteraction : MonoBehaviour {
     void OnTriggerStay(Collider other){
         if (other.tag == "Player"){
             if (!isUsing) {
+                //Display tooltip when player is inside trigger
                 toolTip.text = "Press 'r' to use computer";
             }
         }
-
+        //Player uses computer
         if (Input.GetKeyUp("r")){
             if (isUsing){
                 unlockMovement();
@@ -46,12 +48,13 @@ public class ComputerInteraction : MonoBehaviour {
             }
         }
     }
+    //Removes tooltip when player exits trigger
     void OnTriggerExit(Collider other) {
         if (other.tag == "Player") {
             toolTip.text = "";
         }
     }
-
+    //Locks movement when player is interacting with computer
     private void lockMovement() {
         playerController.enabled = false;
         playerLook.enabled = false;
@@ -59,6 +62,7 @@ public class ComputerInteraction : MonoBehaviour {
         isUsing = true;
         missionText.printMissionText("Use the number keys to enter the code. Press 'r' again to abort.");
     }
+    //Unlocks player after finishing interacting with computer
     private void unlockMovement(){
         playerController.enabled = true;
         playerLook.enabled = true;
@@ -73,9 +77,8 @@ public class ComputerInteraction : MonoBehaviour {
             yield return null;
         }
     }
-
+    //Recieves input given to computer. Only 0-9, 0-9 on num-pad, enter and "space" is recieved
     void Update (){
-        //Getting keyboard input when player is using the computer
         if(isUsing){
 
             if (Input.GetKeyUp(KeyCode.Keypad0) || Input.GetKeyUp("0"))
@@ -144,11 +147,11 @@ public class ComputerInteraction : MonoBehaviour {
             }
         }
     }
-
+    //Displays the entered numbers on the screen with some "formating"
     private void displayNumbers() {
         computerDisplay.text = ">: " + theNumbers + "▊";
     }
-
+    //Cursor blinking when idle
     private IEnumerator idleState() {
         while (true){
             computerDisplay.text = ">: ▊";
@@ -157,6 +160,7 @@ public class ComputerInteraction : MonoBehaviour {
             yield return new WaitForSeconds(1);
         }
     }
+    //Checks if the numbers are entered right
     private void checkNumbers()
     {
         if (theNumbers == "4 8 15 16 23 42"){

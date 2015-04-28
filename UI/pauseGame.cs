@@ -44,10 +44,11 @@ public class pauseGame : MonoBehaviour {
         //Loading setup-scene
         Application.LoadLevel("fpcLoader");
     }
-
+    //Sets kill screen active on canvas
     public void setKillScreen(){
         killScreen.SetActive(true);
     }
+    //Sets pause menu active on canvas
     public void setPauseMenu() {
         pauseMenu.SetActive(true);
     }

@@ -79,11 +79,12 @@ public class uiUpdate : MonoBehaviour {
     {
         return (currentHealthXValue - minXValue) / healthBarUnit;
     }
+    //DEBUGGING
     public float getCurrentDrugs()
     {
         return (currentDrugsXValue - minXValue) / drugsBarUnit;
     }
-
+    //Sets value on drug-bar
 	public void setCurrentDrug(float delta){
         currentDrugsXValue += (delta * drugsBarUnit);
 
@@ -98,6 +99,7 @@ public class uiUpdate : MonoBehaviour {
         }
         drugsTransform.localPosition = new Vector3(currentDrugsXValue, drugsYValue);
 	}
+    //Display damage indicator and number to show how much damage the player has taken.
     public void displayDamage(int i) {
 
         if (i > 0) {
@@ -110,6 +112,7 @@ public class uiUpdate : MonoBehaviour {
         }
     }
 
+    //Sets the countdown clock visible on canvas
     public void setClockVisible() {
         uiClock.SetActive(true);
     }
@@ -138,6 +141,7 @@ public class uiUpdate : MonoBehaviour {
 	void Update () {
         //Not the best way to lock rotation on the minimap.
         GameObject.Find("miniMapCam").transform.eulerAngles = new Vector3(90,0,0);
+       
         //DEBUGGING
         //debugText.text = "Health:" + getCurrentHealth() + " Hunger:" + getCurrentHunger() + "Drugs:" + getCurrentDrugs();
     }

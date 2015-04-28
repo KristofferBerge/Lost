@@ -25,6 +25,7 @@ public class rayCast : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+        //Initiates ray from middle of camera
        Ray ray = Camera.main.ScreenPointToRay(new Vector3(x,y));
        RaycastHit hit;
 
@@ -51,27 +52,24 @@ public class rayCast : MonoBehaviour {
                         }
                     }
             }
-            if (Physics.Raycast(ray, out hit, 3)){
-                if (hit.collider.tag == "enemy") {
-                    hit.collider.gameObject.GetComponent<EnemyHealth>().reduceHealth(10);
-                }
-
-            }
         }
-
+        //Teleporting up and down from bunker
         if (Input.GetButton("Submit")) {
             if (Physics.Raycast(ray, out hit, 10)) {
                 if (hit.collider.tag == "teleportDown") {
+                    //Setting spawn position and loading level
                     playerpos.setSpawn("bunker");
                     Application.LoadLevel("bunker");
                 }
                 else if (hit.collider.tag == "teleportUp") {
+                    //Setting spawn position and loading level
                     playerpos.setSpawn("hatch");
                     Application.LoadLevel("main");
                 }
             }
         }
 
+        //Displays tooltip when raycast hits object tagged pickup
         if (Physics.Raycast(ray, out hit, 10)) {
             if (hit.collider.tag == "pickup") {
                 //If ray hits object that can be picked up
@@ -85,6 +83,7 @@ public class rayCast : MonoBehaviour {
             }
             else
             {
+                //Removes tooltip text
                 disp.text = "";
             }
         }

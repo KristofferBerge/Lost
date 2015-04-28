@@ -8,7 +8,7 @@ public class BoatMovement : MonoBehaviour {
     private Vector3 toPos;
 
     void OnTriggerEnter(Collider other) {
-        Debug.Log("trigger enter");
+        //When something comes close to the boat, the boat will go out to sea
         startPos = transform.position;
         toPos = new Vector3(startPos.x + travelDistance, startPos.y, startPos.z);
         StartCoroutine(moveBoat());

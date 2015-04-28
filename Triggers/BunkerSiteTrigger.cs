@@ -16,7 +16,7 @@ public class BunkerSiteTrigger : MonoBehaviour {
         if (other.tag == "Player")
         {
             uiScript.GetComponent<postMissionText>().printMissionText(missionText);
-            //This message will self destruct
+            //This message will self destruct to not be displayed again
             Destroy(this);
         }
     }

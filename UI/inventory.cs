@@ -9,7 +9,7 @@ public class inventory : MonoBehaviour {
         GameObject.Find("UI-script").GetComponent<inventoryUpdate>().removeItem();
     }
 
-
+    //Identifies the object player tries to pick up by name and converts it to a number for use in switchcase and uiUpdate
     public int getItemNr(GameObject item){
         string name = item.name;
         int i = 0;
@@ -77,13 +77,14 @@ public class inventory : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         mapCam = GameObject.Find("miniMapCam").GetComponent<Camera>();
-        //sets enemy arrows to invisible
+        //sets enemy arrows to invisible by including its layer on minimap cam
         mapCam.cullingMask = ~(1 << 8);
 	}
 	
 	// Update is called once per frame
 	void Update () {
         if (Input.GetButton("Submit")) {
+            //Gets selected item from inventory and uses it
             useItem(GameObject.Find("UI-script").GetComponent<inventoryUpdate>().getSelectedItem());
         }
 	}

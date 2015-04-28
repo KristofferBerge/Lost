@@ -12,7 +12,7 @@ public class CrashSiteTrigger : MonoBehaviour {
     void OnTriggerEnter(Collider other) {
         if (other.tag == "Player"){
             uiScript.GetComponent<postMissionText>().printMissionText(missionText);
-            //This message will self destruct
+            //This message will self destruct to not be displayed again
             Destroy(this);
         }
     }

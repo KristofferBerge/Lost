@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class LaptopController : MonoBehaviour {
     public Text laptopText;
+    public AudioSource lydkilde;
 
     void Start() {
         StartCoroutine(textBlink());
@@ -35,5 +36,6 @@ public class LaptopController : MonoBehaviour {
         //Sets enemy arrows visible
         GameObject.Find("miniMapCam").GetComponent<Camera>().cullingMask |= (1 << 8);
         GameObject.Find("towerLight").GetComponent<BlinkingLight>().startBlink();
+        lydkilde.Play();
     }
 }

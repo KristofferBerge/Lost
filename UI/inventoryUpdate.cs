@@ -17,6 +17,8 @@ public class inventoryUpdate : MonoBehaviour {
     public GameObject sMap;
     public GameObject uDrugs;
     public GameObject sDrugs;
+    public GameObject uAk;
+    public GameObject sAk;
 
 	//Storing positions, selection and inventory
     public int numberOfSlots;
@@ -42,6 +44,7 @@ public class inventoryUpdate : MonoBehaviour {
 
 			//Selects the "selected" sprite to be instantiated
 			if(i == currentSlot){
+                showGun(false);
 				switch (inventoryArr[i]){
 					case 0:
 						createSlot(i, sEmpty);
@@ -60,6 +63,10 @@ public class inventoryUpdate : MonoBehaviour {
                         break;
                     case 5:
                         createSlot(i, sDrugs);
+                        break;
+                    case 6:
+                        createSlot(i, sAk);
+                        showGun(true);
                         break;
 				}
 			}
@@ -85,6 +92,9 @@ public class inventoryUpdate : MonoBehaviour {
                 case 5:
                     createSlot(i, uDrugs);
                     break;
+                case 6:
+                    createSlot(i, uAk);
+                    break;
 				}
 			}
 		}
@@ -109,7 +119,6 @@ public class inventoryUpdate : MonoBehaviour {
 	}
 
     //Raycast will ask if selected slot is empty when player tries to pick up object
-    //*FEATURE* This can be expanded to check entire array of inventory for free space.
     public bool getSelectedSlot(){
         if (inventoryArr[currentSlot] == 0) {
             return true;
@@ -191,5 +200,57 @@ public class inventoryUpdate : MonoBehaviour {
 			currentSlot += 1;
 			checkCurrentSlot();
 		}
+        else if(Input.GetKeyUp("1")){
+            currentSlot = 0;
+            checkCurrentSlot();
+        }
+        else if (Input.GetKeyUp("2"))
+        {
+            currentSlot = 1;
+            checkCurrentSlot();
+        }
+        else if (Input.GetKeyUp("3"))
+        {
+            currentSlot = 2;
+            checkCurrentSlot();
+        }
+        else if (Input.GetKeyUp("4"))
+        {
+            currentSlot = 3;
+            checkCurrentSlot();
+        }
+        else if (Input.GetKeyUp("5"))
+        {
+            currentSlot = 4;
+            checkCurrentSlot();
+        }
+        else if (Input.GetKeyUp("6"))
+        {
+            currentSlot = 5;
+            checkCurrentSlot();
+        }
+        else if (Input.GetKeyUp("7"))
+        {
+            currentSlot = 6;
+            checkCurrentSlot();
+        }
+        else if (Input.GetKeyUp("8"))
+        {
+            currentSlot = 7;
+            checkCurrentSlot();
+        }
+        else if (Input.GetKeyUp("9"))
+        {
+            currentSlot = 8;
+            checkCurrentSlot();
+        }
 	}
+    private void showGun(bool show) {
+        if (show) {
+            GameObject.Find("First Person Controller").GetComponent<WheaponController>().showWheapon(true);
+        }
+        else{
+            GameObject.Find("First Person Controller").GetComponent<WheaponController>().showWheapon(false);
+        }
+    }
 }

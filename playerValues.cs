@@ -46,7 +46,7 @@ public class playerValues : MonoBehaviour {
 
         if (Input.GetKeyDown("p"))
         {
-           uiScript.GetComponent<uiUpdate>().setCurrentHunger(10);
+           uiScript.GetComponent<uiUpdate>().setCurrentHealth(10);
         }
 
         //Slowly decreases the hunger
@@ -62,12 +62,12 @@ public class playerValues : MonoBehaviour {
             uiScript.GetComponent<uiUpdate>().setCurrentHealth(healthDeclineRate * Time.deltaTime * damage);
         }
         //Decreases the health if hunger is < 10
-        if (uiScript.GetComponent<uiUpdate>().getCurrentHunger() < 10) {
+        if (uiScript.GetComponent<uiUpdate>().getCurrentHunger() < 20) {
             uiScript.GetComponent<uiUpdate>().setCurrentHealth(healthDeclineRate * Time.deltaTime);
         }
-        //Increases the health if hunger > 50 and damage = 0
-        if (uiScript.GetComponent<uiUpdate>().getCurrentHunger() > 50 && damage == 0) {
-            uiScript.GetComponent<uiUpdate>().setCurrentHealth(healthInclineRate * Time.deltaTime);
+        //Increases the health if hunger > 50
+        if (uiScript.GetComponent<uiUpdate>().getCurrentHunger() > 50) {
+            uiScript.GetComponent<uiUpdate>().setCurrentHealth(-healthInclineRate * Time.deltaTime);
         }
 	}
 }

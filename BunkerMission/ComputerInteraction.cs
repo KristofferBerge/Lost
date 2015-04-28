@@ -78,50 +78,52 @@ public class ComputerInteraction : MonoBehaviour {
         //Getting keyboard input when player is using the computer
         if(isUsing){
 
-            if (Input.GetKeyUp(KeyCode.Keypad0)) {
+            if (Input.GetKeyUp(KeyCode.Keypad0) || Input.GetKeyUp("0"))
+            {
                 theNumbers += "0";
                 displayNumbers();
             }
-            if (Input.GetKeyUp(KeyCode.Keypad1)) {
+            if (Input.GetKeyUp(KeyCode.Keypad1) || Input.GetKeyUp("1"))
+            {
                 theNumbers += "1";
                 displayNumbers();
             }
-            else if (Input.GetKeyUp(KeyCode.Keypad2))
+            else if (Input.GetKeyUp(KeyCode.Keypad2) || Input.GetKeyUp("2"))
             {
                 theNumbers += "2";
                 displayNumbers();
             }
-            else if (Input.GetKeyUp(KeyCode.Keypad3))
+            else if (Input.GetKeyUp(KeyCode.Keypad3) || Input.GetKeyUp("3"))
             {
                 theNumbers += "3";
                 displayNumbers();
             }
-            else if (Input.GetKeyUp(KeyCode.Keypad4))
+            else if (Input.GetKeyUp(KeyCode.Keypad4) || Input.GetKeyUp("4"))
             {
                 theNumbers += "4";
                 displayNumbers();
             }
-            else if (Input.GetKeyUp(KeyCode.Keypad5))
+            else if (Input.GetKeyUp(KeyCode.Keypad5) || Input.GetKeyUp("5"))
             {
                 theNumbers += "5";
                 displayNumbers();
             }
-            else if (Input.GetKeyUp(KeyCode.Keypad6))
+            else if (Input.GetKeyUp(KeyCode.Keypad6) || Input.GetKeyUp("6"))
             {
                 theNumbers += "6";
                 displayNumbers();
             }
-            else if (Input.GetKeyUp(KeyCode.Keypad7))
+            else if (Input.GetKeyUp(KeyCode.Keypad7) || Input.GetKeyUp("7"))
             {
                 theNumbers += "7";
                 displayNumbers();
             }
-            else if (Input.GetKeyUp(KeyCode.Keypad8))
+            else if (Input.GetKeyUp(KeyCode.Keypad8) || Input.GetKeyUp("8"))
             {
                 theNumbers += "8";
                 displayNumbers();
             }
-            else if (Input.GetKeyUp(KeyCode.Keypad9))
+            else if (Input.GetKeyUp(KeyCode.Keypad9) || Input.GetKeyUp("9"))
             {
                 theNumbers += "9";
                 displayNumbers();

@@ -14,6 +14,7 @@ public class CountDown : MonoBehaviour {
     private Transform camTransform;
     public float shakeIntensity;
     private GameObject timerCanvas;
+    public AudioSource lydkilde;
 
     void Awake() {
         whiteOut = GameObject.Find("WhiteOut");
@@ -69,6 +70,7 @@ public class CountDown : MonoBehaviour {
     }
 
     private IEnumerator cameraShake() {
+        lydkilde.Play();
         Vector3 orginalPos = camTransform.transform.localPosition;
         while (endingRunning) {
             camTransform.localPosition = orginalPos + Random.insideUnitSphere * shakeIntensity;

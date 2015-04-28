@@ -5,6 +5,7 @@ public class BulletBehaviour : MonoBehaviour {
     private GameObject player;
     private playerValues playerVal;
     private VisualizeDamage uiDamage;
+    public GameObject bloodSpatter;
     public int damage;
 	// Use this for initialization
 	void Start () {
@@ -22,9 +23,12 @@ public class BulletBehaviour : MonoBehaviour {
             uiDamage.displayDamageOverlay();
 
         }
-        else if (other.gameObject.tag == "Enemy") { 
+        else if (other.gameObject.tag == "enemy") {
+            //instantiates particleEmitter on hit position.
+            GameObject newSpatter = (GameObject)Instantiate(bloodSpatter, transform.position, transform.rotation);
+            //Reduces enemy health
+            other.gameObject.GetComponent<EnemyHealth>().reduceHealth(10);
         }
-        //destroys bullet if it hits target
         Destroy(this.gameObject);
     }
 
@@ -32,5 +36,4 @@ public class BulletBehaviour : MonoBehaviour {
         yield return new WaitForSeconds(i);
        // Destroy(this.gameObject);
     }
-
 }

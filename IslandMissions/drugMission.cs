@@ -19,12 +19,14 @@ public class drugMission : MonoBehaviour {
     public void overflow(float i) {
         if (i > 10) {
             GameObject.Find("UI-script").GetComponent<postMissionText>().printMissionText("Dude, be carefull! This is some strong shit...");
+            GameObject.Find("UI-script").GetComponent<uiUpdate>().setCurrentHealth(50);
+            GameObject.Find("DamageOverlay").GetComponent<VisualizeDamage>().displayDamageOverlay();
         }
+
     }
 	// Use this for initialization
 	void Start () {
         missionEnabled = false;
-
         //Storing reference to object before setting inactive
         drugsBar = GameObject.Find("drugsBar");
         drugsBar.SetActive(false);

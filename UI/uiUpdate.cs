@@ -40,6 +40,9 @@ public class uiUpdate : MonoBehaviour {
     private GameObject uiClock;
     private GameObject whiteOut;
 
+    //Debugging
+    public Text debugText;
+
 	//Public setters. 
 	public void setCurrentHealth(float delta){
 		currentHealthXValue = currentHealthXValue - (delta * healthBarUnit);
@@ -68,9 +71,17 @@ public class uiUpdate : MonoBehaviour {
         //Sets new health value in UI
         hungerTransform.localPosition = new Vector3(currentHungerXValue, hungerYValue);
 	}
-
     public float getCurrentHunger() {
         return (currentHungerXValue - minXValue) / hungerBarUnit;
+    }
+    //DEBUGGING
+    public float getCurrentHealth()
+    {
+        return (currentHealthXValue - minXValue) / healthBarUnit;
+    }
+    public float getCurrentDrugs()
+    {
+        return (currentDrugsXValue - minXValue) / drugsBarUnit;
     }
 
 	public void setCurrentDrug(float delta){
@@ -78,7 +89,7 @@ public class uiUpdate : MonoBehaviour {
 
         if (currentDrugsXValue > maxXValue) {
             float overflow;
-            overflow = (currentDrugsXValue - minXValue / drugsBarUnit) - maxDrugs;
+            overflow = ((currentDrugsXValue - minXValue) /drugsBarUnit) - maxDrugs;
             currentDrugsXValue = maxXValue;
             GameObject.Find("Persistant").GetComponent<drugMission>().overflow(overflow);
         }
@@ -104,7 +115,6 @@ public class uiUpdate : MonoBehaviour {
     }
 
 	void Start () {
-	
 		//set coordinates
 		minXValue = healthTransform.localPosition.x - healthTransform.rect.width;
 		maxXValue = healthTransform.localPosition.x;
@@ -128,7 +138,8 @@ public class uiUpdate : MonoBehaviour {
 	void Update () {
         //Not the best way to lock rotation on the minimap.
         GameObject.Find("miniMapCam").transform.eulerAngles = new Vector3(90,0,0);
-    
+        //DEBUGGING
+        //debugText.text = "Health:" + getCurrentHealth() + " Hunger:" + getCurrentHunger() + "Drugs:" + getCurrentDrugs();
     }
 
     void playerDead() {

@@ -30,6 +30,9 @@ public class inventory : MonoBehaviour {
             case "pack of drugs":
                 i = 5;
                 break;
+            case "Ak-47":
+                i = 6;
+                break;
         }
         
         return i;
@@ -64,6 +67,9 @@ public class inventory : MonoBehaviour {
             case 5:
                 GameObject.Find("Persistant").GetComponent<drugMission>().takeDrugs();
                 removeItem();
+                break;
+            case 6:
+                //Player uses wheapon. Mouse key should be used for shooting.
                 break;
         }
     }
